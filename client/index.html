@@ -1,0 +1,25 @@
+<head>
+  <title page-title></title>
+  <base href="/">
+</head>
+
+<body ng-controller="MainCtrl as main">
+
+<div>
+<!--   <header class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h1>
+          <a href="/parties">Home</a>
+        </h1>
+      </div>
+      <a class="btn" ng-href="/login" ng-hide="$root.currentUser">Login</a>
+      <a class="btn" ng-href="/register" ng-hide="$root.currentUser">Sign up</a>
+      <a ng-show="$root.currentUser">{{ $root.currentUser }}</a>
+      <a class="btn" ng-href="/logout" ng-show="$root.currentUser">Logout</a>
+    </div>
+  </header> -->
+  <div ui-view></div>
+</div>
+
+</body>
