@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      .login-panel.panel.panel-default
+        .panel-heading
+          h3.panel-title Please Sign In
+        .panel-body
+          .row
+            .col-md-6
+              .alert.alert-warning(ng-show='lc.error')
+                small {{ lc.error }}
+              form(role='form')
+                fieldset
+                  .form-group
+                    input.form-control(placeholder='E-mail', name='email', type='email', ng-model='lc.credentials.email', autofocus='')
+                  .form-group
+                    input.form-control(placeholder='Password', name='password', type='password', value='', ng-model='lc.credentials.password')
+                  .checkbox
+                    label
+                      input(name='remember', type='checkbox', value='Remember Me')
+                      | Remember Me
+                  a.btn.btn-lg.btn-success.btn-block(ng-click='lc.login()') Login
+                .row
+                  .col-sm-12
+                    a(href='/resetpw') Forgot password?
+                  .col-sm-12
+                    a(href='/register') Create an account
+            .col-md-6
+              div Login with:
+              a.btn.btn-lg.btn-info.btn-block(href='#') Twitter
+              a.btn.btn-lg.btn-primary.btn-block(href='#') Facebook

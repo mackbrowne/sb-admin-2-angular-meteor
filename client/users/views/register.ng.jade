@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      .login-panel.panel.panel-default
+        .panel-heading
+          h3.panel-title Register
+        .panel-body
+          .row
+            .col-md-6
+              .alert.alert-warning(ng-show='rc.error')
+                small {{ rc.error }}
+              form(role='form')
+                fieldset
+                  .form-group
+                    input.form-control(placeholder='E-mail', name='email', type='email', ng-model='rc.credentials.email', autofocus='')
+                  .form-group
+                    input.form-control(placeholder='Password', name='password', type='password', value='', ng-model='rc.credentials.password')
+                  a.btn.btn-lg.btn-success.btn-block(ng-click='rc.register()') Create Account
+                .row
+                  .col-sm-12
+                    a(href='/login') Login Instead?
+            .col-md-6
+              div Register with:
+              a.btn.btn-lg.btn-info.btn-block(href='#') Twitter
+              a.btn.btn-lg.btn-primary.btn-block(href='#') Facebook

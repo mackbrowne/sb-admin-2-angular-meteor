@@ -1,0 +1,41 @@
+.row
+  .col-lg-12
+    h1.page-header Charts
+.row
+  #line-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Line Chart
+      .panel-body
+        canvas#line.chart.chart-line.chart-xl(chart-data='line.data', chart-labels='line.labels', chart-legend='true', chart-click='line.onClick', chart-series='line.series')
+  #bar-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Bar Chart
+      .panel-body
+        canvas#bar.chart.chart-bar(chart-data='bar.data', chart-labels='bar.labels', chart-series='bar.series', options='bar.options')
+.row
+  #doughnut-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Doughnut Chart
+      .panel-body
+        canvas#doughnut.chart.chart-doughnut.chart-xs(chart-data='donut.data', chart-labels='donut.labels', chart-legend='false')
+  #radar-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Radar Chart
+      .panel-body
+        canvas#area.chart.chart-radar(chart-data='radar.data', chart-labels='radar.labels', chart-click='onClick')
+  #pie-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Pie Chart
+      .panel-body
+        canvas#pie.chart.chart-pie.chart-xs(chart-data='pie.data', chart-labels='pie.labels')
+  .col-lg-6.col-sm-12(id='polar area-chart', ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Polar Area Chart
+      .panel-body
+        canvas#polar.chart.chart-polar-area(chart-data='polar.data', chart-labels='polar.labels')
+  #base-chart.col-lg-6.col-sm-12(ng-controller='ChartCtrl')
+    .panel.panel-default
+      .panel-heading Dynamic Chart
+      .panel-body
+        canvas#base.chart.chart-base(chart-type='dynamic.type', chart-data='dynamic.data', chart-labels='dynamic.labels', chart-legend='true')
+    button.btn.btn-primary.pull-right(type='button', ng-click='dynamic.toggle()') Toggle

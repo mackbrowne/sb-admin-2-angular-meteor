@@ -1,0 +1,53 @@
+.row
+  .col-md-12
+    form(ng-show='$root.currentUser')
+      h2 Create a new party:
+      label Name
+      input(ng-model='newParty.name')
+      label Description
+      input(ng-model='newParty.description')
+      label Public
+      input(type='checkbox', ng-model='newParty.public')
+      button(ng-click="newParty.owner=$root.currentUser._id;parties.push(newParty); newParty='';") Add
+    div(ng-hide='$root.currentUser || $root.loggingIn')
+      | Log in to create a party!
+    ul
+      h1 Parties:
+      div
+        input(type='search', ng-model='search', placeholder='Search')
+        select(ng-model='orderProperty')
+          option(value='1') Ascending
+          option(value='-1') Descending
+      .angular-google-map-container
+        ui-gmap-google-map(center='map.center', zoom='map.zoom')
+          ui-gmap-markers(models='parties', coords="'location'", click='onClicked()', fit='true', idkey="'_id'", dorebuildall='true')
+      li(dir-paginate='party in parties | itemsPerPage: perPage', total-items='partiesCount.count')
+        a(href='/parties/{{party._id}}') {{party.name}}
+        p {{party.description}}
+        button(ng-click='remove(party)', ng-show='$root.currentUser && $root.currentUser._id == party.owner') X
+        div(ng-show='$root.currentUser')
+          input(type='button', value="I'm going!", ng-click="rsvp(party._id, 'yes')")
+          input(type='button', value='Maybe', ng-click="rsvp(party._id, 'maybe')")
+          input(type='button', value='No', ng-click="rsvp(party._id, 'no')")
+        div(ng-hide='$root.currentUser')
+          i Sign in to RSVP for this party.
+        div
+          | Who is coming:
+          | Yes - {{ (party.rsvps | filter:{rsvp:'yes'}).length }}
+          | Maybe - {{ (party.rsvps | filter:{rsvp:'maybe'}).length }}
+          | No - {{ (party.rsvps | filter:{rsvp:'no'}).length }}
+          div(ng-repeat="rsvp in party.rsvps | filter:{rsvp:'yes'}")
+            | {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
+          div(ng-repeat="rsvp in party.rsvps | filter:{rsvp:'maybe'}")
+            | {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
+          div(ng-repeat="rsvp in party.rsvps | filter:{rsvp:'no'}")
+            | {{ getUserById(rsvp.user) | displayName }} - {{ rsvp.rsvp }}
+        ul(ng-if='!party.public')
+          | Users who not responded:
+          li(ng-repeat='invitedUser in outstandingInvitations(party)')
+            | {{ invitedUser | displayName }}
+        div(ng-if='party.public')
+          | Everyone is invited
+        p
+          small Posted by {{ creator(party) | displayName }}
+    dir-pagination-controls(on-page-change='pageChanged(newPageNumber)')
