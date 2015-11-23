@@ -1,14 +1,14 @@
-angular.module("socially").controller("LoginCtrl", ['$meteor', '$state',
+angular.module('socially').controller('LoginCtrl', ['$meteor', '$state',
   function ($meteor, $state) {
-    var vm = this;
- 
+    let vm = this;
+
     vm.credentials = {
       email: '',
       password: ''
     };
- 
+
     vm.error = '';
- 
+
     vm.login = function () {
       $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
         function () {

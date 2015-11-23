@@ -1,4 +1,3 @@
-'use strict';
 /**
  * @ngdoc function
  * @name sbAdminApp.controller:MainCtrl
@@ -6,7 +5,5 @@
  * # MainCtrl
  * Controller of the sbAdminApp
  */
-angular.module('socially')
-  .controller('FormCtrl', function($scope) {
-    
-});
+angular.module('socially').controller('FormCtrl', [ '$scope', function($scope) {
+}]);

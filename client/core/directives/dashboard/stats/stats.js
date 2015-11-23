@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name izzyposWebApp.directive:adminPosHeader
@@ -7,20 +5,20 @@
  * # adminPosHeader
  */
 angular.module('socially')
-    .directive('stats',function() {
-    	return {
-  		templateUrl:'client/core/directives/dashboard/stats/stats.html',
-  		restrict:'E',
-  		replace:true,
-  		scope: {
+  .directive('stats', [function () {
+    return {
+      templateUrl: 'client/core/directives/dashboard/stats/stats.html',
+      restrict: 'E',
+      replace: true,
+      scope: {
         'model': '=',
         'comments': '@',
         'number': '@',
         'name': '@',
         'colour': '@',
-        'details':'@',
-        'type':'@',
-        'goto':'@'
-  		}
-  	}
-  });
+        'details': '@',
+        'type': '@',
+        'goto': '@'
+      }
+    };
+  }]);

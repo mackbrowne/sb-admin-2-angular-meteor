@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name izzyposWebApp.directive:adminPosHeader
@@ -8,33 +6,33 @@
  */
 
 angular.module('socially')
-  .directive('sidebar',['$location',function() {
+  .directive('sidebar', [function() {
     return {
-      templateUrl:'client/core/directives/sidebar/sidebar.html',
+      templateUrl: 'client/core/directives/sidebar/sidebar.html',
       restrict: 'E',
       replace: true,
       scope: {
       },
-      controller:function($scope){
+      controller: function($scope){
         $scope.selectedMenu = 'dashboard';
         $scope.collapseVar = 0;
         $scope.multiCollapseVar = 0;
-        
+
         $scope.check = function(x){
-          
-          if(x==$scope.collapseVar)
+
+          if (x === $scope.collapseVar)
             $scope.collapseVar = 0;
           else
             $scope.collapseVar = x;
         };
-        
+
         $scope.multiCheck = function(y){
-          
-          if(y==$scope.multiCollapseVar)
+
+          if (y === $scope.multiCollapseVar)
             $scope.multiCollapseVar = 0;
           else
             $scope.multiCollapseVar = y;
         };
       }
-    }
+    };
   }]);

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name izzyposWebApp.directive:adminPosHeader
@@ -8,15 +6,14 @@
  */
 
 angular.module('socially')
-  .directive('sidebarSearch',function() {
+  .directive('sidebarSearch', [function () {
     return {
-      templateUrl:'client/core/directives/sidebar/sidebar-search/sidebar-search.html',
+      templateUrl: 'client/core/directives/sidebar/sidebar-search/sidebar-search.html',
       restrict: 'E',
       replace: true,
-      scope: {
-      },
-      controller:function($scope){
+      scope: {},
+      controller: function ($scope) {
         $scope.selectedMenu = 'home';
       }
-    }
-  });
+    };
+  }]);

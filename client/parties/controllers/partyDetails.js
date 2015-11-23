@@ -1,9 +1,9 @@
-angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$stateParams', '$meteor',
-  function($scope, $stateParams, $meteor){
+angular.module('socially').controller('PartyDetailsCtrl', ['$scope', '$stateParams', '$meteor', '$log',
+  function($scope, $stateParams, $meteor, $log){
 
     $scope.party = $meteor.object(Parties, $stateParams.partyId);
 
-    var subscriptionHandle;
+    let subscriptionHandle;
     $meteor.subscribe('parties').then(function(handle) {
       subscriptionHandle = handle;
     });
@@ -13,10 +13,10 @@ angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$statePara
     $scope.invite = function(user){
       $meteor.call('invite', $scope.party._id, user._id).then(
         function(data){
-          console.log('success inviting', data);
+          $log.info('success inviting', data);
         },
         function(err){
-          console.log('failed', err);
+          $log.error('failed', err);
         }
       );
     };

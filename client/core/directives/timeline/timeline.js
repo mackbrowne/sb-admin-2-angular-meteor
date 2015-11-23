@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc directive
  * @name izzyposWebApp.directive:adminPosHeader
@@ -7,10 +5,10 @@
  * # adminPosHeader
  */
 angular.module('socially')
-	.directive('timeline',function() {
+	.directive('timeline', [function() {
     return {
-        templateUrl:'client/core/directives/timeline/timeline.html',
-        restrict: 'E',
-        replace: true,
-    }
-  });
+      templateUrl: 'client/core/directives/timeline/timeline.html',
+      restrict: 'E',
+      replace: true
+    };
+  }]);

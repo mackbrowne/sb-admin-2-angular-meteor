@@ -1,13 +1,13 @@
-angular.module("socially").controller("ResetCtrl", ['$meteor', '$state',
+angular.module('socially').controller('ResetCtrl', ['$meteor', '$state',
   function ($meteor, $state) {
-    var vm = this;
- 
+    let vm = this;
+
     vm.credentials = {
       email: ''
     };
- 
+
     vm.error = '';
- 
+
     vm.reset = function () {
       $meteor.forgotPassword(vm.credentials.email).then(
         function () {

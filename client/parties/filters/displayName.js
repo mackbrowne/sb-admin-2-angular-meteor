@@ -1,4 +1,4 @@
-angular.module('socially').filter('displayName', function () {
+angular.module('socially').filter('displayName', [function () {
   return function (user) {
     if (!user)
       return;
@@ -6,7 +6,6 @@ angular.module('socially').filter('displayName', function () {
       return user.profile.name;
     else if (user.emails)
       return user.emails[0].address;
-    else
-      return user;
-  }
-});
+    return user;
+  };
+}]);

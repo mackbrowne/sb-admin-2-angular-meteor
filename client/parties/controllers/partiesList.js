@@ -1,5 +1,5 @@
-angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '$rootScope', '$state',
-  function($scope, $meteor, $rootScope, $state){
+angular.module('socially').controller('PartiesListCtrl', ['$scope', '$meteor', '$rootScope', '$state', '$log',
+  function($scope, $meteor, $rootScope, $state, $log){
 
     $scope.page = 1;
     $scope.perPage = 3;
@@ -10,7 +10,7 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
 
     $scope.parties = $meteor.collection(function() {
       return Parties.find({}, {
-        sort : $scope.getReactively('sort')
+        sort: $scope.getReactively('sort')
       });
     });
 
@@ -20,7 +20,7 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
         skip: (parseInt($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
         sort: $scope.getReactively('sort')
       }, $scope.getReactively('search')).then(function() {
-        $scope.partiesCount = $meteor.object(Counts ,'numberOfParties', false);
+        $scope.partiesCount = $meteor.object(Counts, 'numberOfParties', false);
 
         $scope.parties.forEach( function (party) {
           party.onClicked = function () {
@@ -58,14 +58,14 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
     $scope.creator = function(party){
       if (!party)
         return;
-      var owner = $scope.getUserById(party.owner);
+      let owner = $scope.getUserById(party.owner);
       if (!owner)
-        return "nobody";
+        return 'nobody';
 
       if ($rootScope.currentUser)
         if ($rootScope.currentUser._id)
           if (owner._id === $rootScope.currentUser._id)
-            return "me";
+            return 'me';
 
       return owner;
     };
@@ -73,10 +73,10 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
     $scope.rsvp = function(partyId, rsvp){
       $meteor.call('rsvp', partyId, rsvp).then(
         function(data){
-          console.log('success responding', data);
+          $log.info('success responding', data);
         },
         function(err){
-          console.log('failed', err);
+          $log.errord('failed', err);
         }
       );
     };

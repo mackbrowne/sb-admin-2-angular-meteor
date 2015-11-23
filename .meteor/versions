@@ -18,6 +18,7 @@ angularui:angular-google-maps@2.2.1
 angularui:angular-ui-bootstrap@0.13.0
 angularui:angular-ui-router@0.2.15
 angularutils:pagination@0.9.1_2
+arturadib:eslint@0.0.1
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
